@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "OnePerson";
+}
+
+<h2>OnePerson</h2>
+<div class="row">
+    <div class="col-xs-6">
+        <label for="PersonId">Person ID:</label>
+        <input type="text" class="form-control" id="PersonId" />
+    </div>
+    <div class="col-xs-6">
+        <div id="pnlPerson" class="hidden">
+            <div class="row">
+                <div class="col-xs-12">
+                    <span id="spnFirstName"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <span id="spnLastName"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <span id="spnCountry"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <button id="btn" class="btn btn-primary">Search</button>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/oneperson.js"></script>
+}

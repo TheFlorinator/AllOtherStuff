@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Overview";
+}
+
+<div id="book-app">
+
+    <div class="clearfix" style="padding: 10px 5px 10px 5px;">
+        <button type="button" class="btn btn-primary pull-right" v-on:click.stop="showAddBook">Add A Book</button>
+    </div>
+
+    <div class="clearfix" v-show="books.length > 0">
+        <div class="pull-left" style="width: 200px;height:165px;" v-for="book in books">
+            <img v-bind:src="book.imgUrl" /><br />
+            <a href="#" v-on:click.stop="showEditBook(book)">{{book.title}}</a>
+        </div>
+    </div>
+
+    <div class="alert alert-warning" role="alert" v-show="books.length === 0">
+        Your book collection is empty.
+    </div>
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalBook">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{modal.title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" v-model="book.title" />
+                    </div>
+                    <div class="form-group">
+                        <label>Image Url</label>
+                        <input type="text" class="form-control" v-model="book.imgUrl" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" v-on:click.stop="add" v-show="modal.adding">Save</button>
+                    <button type="button" class="btn btn-primary" v-on:click.stop="edit" v-show="!modal.adding">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/book-app.js"></script>
+}

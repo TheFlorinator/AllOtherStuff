@@ -1,0 +1,49 @@
+﻿@model Cookbook.Models.Wrestler
+@{
+    ViewBag.Title = "Wrestler";
+}
+
+<h2>Wrestler</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    @Html.HiddenFor(m => m.Id)
+    <div>
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name)    
+    </div>
+    <div>
+        @Html.LabelFor(m => m.WeightClass)
+        @Html.DropDownListFor(m => m.WeightClass, new SelectListItem[] {
+            new SelectListItem() { Text = "Light" },
+            new SelectListItem() { Text = "Welter" },
+            new SelectListItem() { Text = "Heavy" }
+        })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.MuscleDensity)
+        @Html.TextBoxFor(m => m.MuscleDensity)
+        @Html.ValidationMessageFor(m => m.MuscleDensity)
+    </div>
+    <h4>Tattoos</h4>
+    for (int i = 0; i < Model.Tattoos.Count; i++)
+    {
+        <div>
+            @Html.LabelFor(m => m.Tattoos[i].Location)
+            @Html.TextBoxFor(m => m.Tattoos[i].Location)
+        </div>
+    }
+    <div>
+        <select name="month">
+            <option value="1">Jan</option>
+            <option value="2">Feb</option>
+            <option value="3">Mar</option>
+        </select>
+        <input type="text" name="day" placeholder="[Day]" />
+        <input type="text" name="year" placeholder="[Year]" />
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Save Wrestler!</button>
+    </div>
+}
+

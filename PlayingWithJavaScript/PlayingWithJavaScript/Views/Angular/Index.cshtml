@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Angular</h2>
+<div ng-app="app">
+    <div ng-controller="ctrl">
+        <div class="row">
+            <div class="col-xs-12">
+                <input type="text" ng-model="name" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label>Name:</label> {{name}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-default" ng-click="showAlert()">Show Alert</button>
+            </div>
+        </div>
+        <table ng-show="people">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="p in people">
+                    <td>{{p.FirstName}}</td>
+                    <td>{{p.LastName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="~/Scripts/guild-angular.js"></script>
+}
+

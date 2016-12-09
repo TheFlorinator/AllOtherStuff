@@ -1,0 +1,29 @@
+﻿@model Cookbook.Models.GenericModel
+@using Cookbook.Helpers
+
+<h1>Index Page</h1>
+
+<div>
+    @using (Html.BeginForm("AddUser", "Home", FormMethod.Post))
+    {
+        <div>
+            @Html.CheckBoxFor(m => m.IsValid)
+        </div>
+            <div>
+                @Html.DropDownListFor(m => m.Name, new SelectListItem[] {
+                        new SelectListItem { Text="Eggplant"},
+                        new SelectListItem { Text="Corn"},
+                        new SelectListItem { Text="Tomato"}
+                    }
+                )
+                @Html.HiddenFor(m => m.Number)
+            </div>
+            <div>
+                @Html.PlaceHolderTextBox("placeholderText", "Fill in some stuff...")
+            </div>
+            <div>
+                <button type="submit">Submit this!</button>
+            </div>
+    }
+
+</div>

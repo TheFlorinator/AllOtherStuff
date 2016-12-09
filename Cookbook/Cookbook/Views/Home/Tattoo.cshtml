@@ -1,0 +1,28 @@
+﻿@model Cookbook.Models.Tattoo
+@{
+    ViewBag.Title = "Tattoo";
+}
+
+<h2>Tattoo</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div>
+        @Html.LabelFor(m => m.Location)
+        @Html.TextBoxFor(m => m.Location)
+        @Html.ValidationMessageFor(m => m.Location)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Size)
+        @Html.TextBoxFor(m => m.Size)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.IsVisible)
+        @Html.CheckBoxFor(m => m.IsVisible)
+        @Html.ValidationMessageFor(m => m.IsVisible)
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+}
+

@@ -1,0 +1,52 @@
+﻿@model  IEnumerable<TheBlogToEndAllBlogs.Models.Post>
+@{
+    ViewBag.Title = "Publish";
+}
+
+<h2>Unpublished Posts</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <table id="myTable" class="table table-striped" style="width: auto;">
+            <thead>
+                <tr>
+                    <th>PostId</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var post in Model)
+                {
+                    <tr>
+                        <td>@post.PostId</td>
+                        <td>@post.Title</td>
+                        <td>@post.Author</td>
+
+                        //Button to edit post page
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm" id="editpost"
+                                    data-PostId="@post.PostId"
+                                    data-title="@post.Title"
+                                    data-PostDate="@post.PostDate"
+                                    data-EndDate="@post.EndDate"
+                                    data-Image="@post.Image"
+                                    data-Address="@post.Address"
+                                    data-Author="@post.Author"
+                                    data-Description="@post.Description"
+                                    data-Content="@post.Content"
+                                    data-HashTags="@post.HashTags"
+                                    data-Published="@post.Published">
+
+                                Details
+                            </button>
+                        </td>
+                    </tr>
+                }
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
+

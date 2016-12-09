@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayingWithJavaScript", "PlayingWithJavaScript\PlayingWithJavaScript.csproj", "{AC0AE3AC-1B2B-40E5-A30A-209ABF0242F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{F9A919D4-B24B-4CF7-B986-5EB4F665AFB3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC0AE3AC-1B2B-40E5-A30A-209ABF0242F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC0AE3AC-1B2B-40E5-A30A-209ABF0242F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC0AE3AC-1B2B-40E5-A30A-209ABF0242F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC0AE3AC-1B2B-40E5-A30A-209ABF0242F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A919D4-B24B-4CF7-B986-5EB4F665AFB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A919D4-B24B-4CF7-B986-5EB4F665AFB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A919D4-B24B-4CF7-B986-5EB4F665AFB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A919D4-B24B-4CF7-B986-5EB4F665AFB3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

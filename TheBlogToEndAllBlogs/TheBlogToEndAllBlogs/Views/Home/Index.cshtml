@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+
+<div class="container" id="firstDiv" style="margin-top:2em;">
+    <div class="row" style="margin-bottom: 15px;">
+        <!--JS Load Most Recent-->
+        <div id="mostRecentContent">
+        </div>
+        <div class="row" id="menu">
+            <div style="color:white;" class="col-xs-12 col-md-3 selections" id="food">
+                <a href="#foodDiv" id="foodLink"> <h2 style="color:white;">Food</h2> </a>
+            </div>
+
+
+            <div class="col-xs-12 col-md-3 selections" id="wine">
+                <a href="#wineDiv" id="wineLink">
+                    <h2 style="color:white;">Wine</h2>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-md-3 selections" id="restaurants">
+                <a href="#restaurantsDiv" id="restaurantLink">
+                    <h2 style="color:white;">Restaurants</h2>
+                </a>
+            </div>
+            <div class="col-xs-12 col-md-3 selections" id="regions">
+                <a href="#regionsDiv" id="regionsLink">
+                    <h2 style="color:white;">Regions</h2>
+                </a>
+            </div>
+            <div class="col-xs-12 col-md-3 selections" id="beer">
+                <a href="#beerDiv" id="beerLink">
+                    <h2 style="color:white;">Beer</h2>
+                </a>
+            </div>
+            <div class="col-xs-12 col-md-3 selections" id="people">
+                <a href="#peopleDiv" id="peopleLink">
+                    <h2 style="color:white;">People</h2>
+                </a>
+            </div>
+            <div class="row" id="blockQ">
+                <div class="col-xs-12 col-md-6">
+                    <blockquote>The Blog To End All BlogsLorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit.</blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div id="featuredFour"></div><!---->
+</div>
+<div id="selectedPost"></div><!---->
+<div class="row">
+    <div id="map" style="width:200px; height:200px; background-color:silver" class="hidden col-xs-12 col-md-offset-9 col-md-3"></div><!---->
+</div>
+<div id="foodDiv">
+    <p>Food</p>
+</div>
+<div id="wineDiv">
+    <p>Wine</p>
+</div>
+<div id="restaurantsDiv">
+    <p>Restaurants</p>
+</div>
+<div id="regionsDiv">
+    <p>Regions</p>
+</div>
+<div id="beerDiv">
+    <p>Beer</p>
+</div>
+<div id="peopleDiv">
+    <p>People</p>
+</div>
+
+
+@Html.Partial("_Modals")
+
+@section scripts {
+    <script type="text/template" id="tmpl">
+        <div class="col-xs-12 col-md-6" id="mainImage">
+            <a class="thumbnail mainLink" href="#selectedPost" data-id="{{PostId}}" id="mainFeatureLink">
+                <img class="img-responsive top" src="{{Image}}" alt="Hey there, good looking." />
+            </a>
+            <div class="caption">
+                <h4>{{Title}}</h4>
+                <p class="date"><strong>November 29th, 2016</strong></p>
+                <p>{{Description}}</p>         
+            </div>
+        </div>
+    </script>
+
+    <script type="text/template" id="tmpl2">
+        <div class="col-lg-3 col-md-4 col-xs-12 thumb">
+            <a class="thumbnail" href="#selectedPost" data-id="{{PostId}}">
+                <img class="img-responsive" src="{{Image}}" alt="">
+            </a>
+            <div class="caption">
+                <h4>{{Title}}</h4>
+                <p class="date"><strong>November 27, 2016</strong></p>
+                <p>{{Description}}</p>               
+            </div>
+        </div>
+    </script>
+
+    <script type="text/template" id="tmpl3">
+        <div class="row">
+            <div id="post">
+                <div class="col-xs-12 col-md-9">
+                    <div id="postTitle">
+                        <h2>{{Title}}</h2>
+                    </div>
+                    <div id="postContent" class="row">
+                        <div class="col-xs-12 col-md-3"><img class="img-responsive" src="{{Image}}"? /></div>
+                        <div class="col-xs-12 col-md-6"><p>{{Content}}</p></div>
+                       
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <div id="author">Author</div>
+                    <h4>{{Author}}</h4>
+                    <div id="#tags">#Tags</div>
+                    <h4>{{Hashtags}}</h4>
+                    <div>Location</div>
+                    <p>{{Address}}</p>
+                    <div id="map" style="width:200px; height:200px; background-color:silver"></div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script>
+        (function () {
+
+            var templates = {};
+
+            function merge(template, obj) {
+                if (!templates[template]) {
+                    templates[template] = $("#" + template).html();
+                }
+                var html = templates[template];
+                return html.replace(/{{(\w+)}}/gi, function (m, entry) {
+                    return obj[entry];
+                });
+            }
+
+            $.getJSON("/api/Blog/MostRecent")
+                .done(function (entry) {
+                    var content = $("#mostRecentContent");
+                    content.append(merge("tmpl", entry));
+
+                })
+                .fail(function () {
+                    console.log("failed!");
+                });
+
+            $.getJSON("/api/Blog/All")
+                .done(function (entries) {
+                    var content = $("#featuredFour");
+                    entries.forEach(function (entry) {
+                        content.append(merge("tmpl2", entry))
+                    });
+
+                })
+                 .fail(function () {
+                     console.log("failed!");
+                 });
+
+            function loadFeatureFour() {                
+                var id = $(this).data('id');
+                $.getJSON("/api/Blog/Get/" + id)
+                .done(function (entry) {
+                    var content = $("#selectedPost").empty();
+                    content.append(merge("tmpl3", entry));
+                })
+            };
+            window.loadFeatureFour = loadFeatureFour;
+            $("#featuredFour").on("click", ".thumbnail", function () {               
+                loadFeatureFour.apply(this);
+                $("#map").removeClass("hidden");               
+            });           
+            $("#mostRecentContent").on("click", "#mainFeatureLink", function () {                
+                loadFeatureFour.apply(this);
+                $("#map").removeClass("hidden");
+                console.log("hello");
+            });
+           
+        })();
+    </script>
+
+<script>
+    //marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+    function myMap() {
+        var mapCanvas = document.getElementById("map");
+        var mapOptions = {
+            center: new google.maps.LatLng(44.977, -93.265), zoom: 11
+        };
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        var uluru = { lat: 44.9757589, lng: -93.2727121 };
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+        //marker.setMap(map);
+
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaz4uwCsZadVlNwMr4E2fWeRA5n_7Jt0Q&callback=myMap"></script>
+
+}

@@ -1,0 +1,138 @@
+﻿@model TheBlogToEndAllBlogs.ViewModels.PostVM
+@{
+    ViewBag.Title = "Publish";
+}
+
+@section head{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src='~/scripts/tinymce/tinymce.js'></script>
+    <script type="text/javascript">
+
+        tinymce.init({
+            mode: 'textareas',
+            theme: 'modern',
+            width: 600,
+            height: 300,
+            plugins: [
+              'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+              'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+              'save table contextmenu directionality emoticons template paste textcolor'
+            ],
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
+        });
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="~/Content/BlogScript.css" rel="stylesheet" />
+
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-3">
+    </div>
+    <div class="col-xs-12 col-sm-9">
+        <h3>Edit and Publish Post</h3>
+    </div>
+</div>
+<div class="row">
+
+    @using (Html.BeginForm())
+            {
+        <div class="col-xs-12 col-sm-3">
+            <h4>Blog Features</h4>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Draft</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div>
+                                <p>Publish</p>
+                                <label class="switch">
+                                    <input type="checkbox" />
+                                    <div class="slider"></div>
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Author</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @Html.TextBoxFor(m => m.Post.Author, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">#Tags</a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @foreach (var hashtag in Model.HashTags)
+                            {
+                                <input type="checkbox" />  @hashtag.HashTag<br />
+                            }
+                            <br />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Featured Image</a>
+                        </h4>
+                    </div>
+                    <div id="collapse4" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @Html.TextBoxFor(m => m.Post.Image, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Location</a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @Html.TextBoxFor(m => m.Post.Address, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xs-12 col-sm-9">
+            <div class="editor-title">
+                <lable>Title</lable>
+                @Html.TextBoxFor(m => m.Post.Content, new { @class = "form-control" })
+                <lable>Description</lable>
+                @Html.TextBoxFor(m => m.Post.Description, new { @class = "form-control" })
+                <label>Content</label>
+                <textarea class="textarea-autosize editor-title_input" tabindex="1" placeholder="Title"></textarea>
+            </div>
+            <body id="tinymce" class="mce-content-body">
+                <div class="form-group">
+
+                </div>
+            </body>
+            <button class="btn-primary">Save and Pubish</button>
+        </div>
+    }
+</div>
+

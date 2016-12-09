@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "RequestDetails";
+}
+
+<h2>RequestDetails</h2>
+
+<p>Controller is: @ViewBag.Controller</p>
+<p>Action is: @ViewBag.Action</p>
+<p>First is: @ViewBag.Fiest</p>
+<p>Second is: @ViewBag.Second</p>
+@if (ViewBag.Third != null)
+{
+    <p>Thrid is: @ViewBag.Third</p>
+}
+

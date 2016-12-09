@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id="content" style="overflow:auto;height:500px;">
+
+</div>
+
+@Html.ActionLink("Add Person", "Add", "Person", null, new { @class = "btn btn-primary" })
+
+@section scripts {
+    <script type="text/template" id="tmpl">
+        <div>
+            <h5>{{FirstName}} {{LastName}}</h5>
+            <p>
+                {{Country}}: {{Buzzwords}}
+            </p>
+            <hr />
+        </div>
+    </script>
+    <script src="~/Scripts/async.js"></script>
+}
+

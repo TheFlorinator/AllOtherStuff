@@ -1,0 +1,26 @@
+﻿@model DVDofThings.Models.Dvd
+
+@{ 
+    Layout = null;
+}
+<div id="dvdAccordian"></div>
+    <div style="display: none" class="panel-group" id="accordian" role="tablist" aria-multiselectable="false">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a class="headerBiz" role="button" data-toggle="collapse" data-parent="#accordian" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        @*Dvd title to go in here*@
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <ul id="dvdContent"></ul>
+                    @*dvd content to go here*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
